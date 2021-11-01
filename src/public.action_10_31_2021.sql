@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS public.action
     comments character varying COLLATE pg_catalog."default",
     userid bigint NOT NULL,
     testcaseid bigint NOT NULL,
+    "order" bigint NOT NULL,
     CONSTRAINT action_pkey PRIMARY KEY (id),
     CONSTRAINT action_testcaseid_fkey FOREIGN KEY (testcaseid)
         REFERENCES public.testcase (id) MATCH SIMPLE
