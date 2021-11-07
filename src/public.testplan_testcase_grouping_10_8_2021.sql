@@ -14,7 +14,17 @@ CREATE TABLE IF NOT EXISTS public.testplan_testcase_grouping
     execution_order bigint NOT NULL,
     userid bigint,
     id bigint NOT NULL DEFAULT nextval('testplan_testcase_grouping_id_seq'::regclass),
-    CONSTRAINT testplan_testcase_grouping_pkey PRIMARY KEY (id)
+    CONSTRAINT testplan_testcase_grouping_pkey PRIMARY KEY (id),
+    CONSTRAINT testplan_testcase_grouping_testcaseid_fkey FOREIGN KEY (testcaseid)
+        REFERENCES public.testcase (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID,
+    CONSTRAINT testplan_testcase_grouping_testplanid_fkey FOREIGN KEY (testplanid)
+        REFERENCES public.testplan (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID
 )
 
 TABLESPACE pg_default;

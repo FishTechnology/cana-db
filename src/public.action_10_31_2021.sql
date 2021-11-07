@@ -16,7 +16,11 @@ CREATE TABLE IF NOT EXISTS public.action
     comments character varying COLLATE pg_catalog."default",
     userid bigint NOT NULL,
     testcaseid bigint NOT NULL,
-    "order" bigint NOT NULL,
+    ordernumber bigint NOT NULL,
+    browser_actiontype character varying COLLATE pg_catalog."default",
+    browservalue character varying COLLATE pg_catalog."default",
+    uiactiontype character varying COLLATE pg_catalog."default",
+    isassert_verification boolean DEFAULT false,
     CONSTRAINT action_pkey PRIMARY KEY (id),
     CONSTRAINT action_testcaseid_fkey FOREIGN KEY (testcaseid)
         REFERENCES public.testcase (id) MATCH SIMPLE
