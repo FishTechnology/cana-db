@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS public.action
     browservalue character varying COLLATE pg_catalog."default",
     uiactiontype character varying COLLATE pg_catalog."default",
     isassert_verification boolean DEFAULT false,
+    condition_type character varying COLLATE pg_catalog."default",
     CONSTRAINT action_pkey PRIMARY KEY (id),
     CONSTRAINT action_testcaseid_fkey FOREIGN KEY (testcaseid)
         REFERENCES public.testcase (id) MATCH SIMPLE
