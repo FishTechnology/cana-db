@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS public.testplan_testcase_grouping
     modifiedby character varying COLLATE pg_catalog."default",
     execution_order bigint NOT NULL,
     userid bigint,
-    id bigint NOT NULL DEFAULT nextval('testplan_testcase_grouping_id_seq'::regclass),
+    id bigint NOT NULL DEFAULT id_generator(),
     CONSTRAINT testplan_testcase_grouping_pkey PRIMARY KEY (id),
     CONSTRAINT testplan_testcase_grouping_testcaseid_fkey FOREIGN KEY (testcaseid)
         REFERENCES public.testcase (id) MATCH SIMPLE
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS public.testplan_testcase_grouping
 TABLESPACE pg_default;
 
 ALTER TABLE public.testplan_testcase_grouping
-    OWNER to postgres;
+    OWNER to "cana-api";
 -- Index: fki_testplan_testcase_grouping_testcaseid_fkey
 
 -- DROP INDEX public.fki_testplan_testcase_grouping_testcaseid_fkey;

@@ -1,10 +1,10 @@
 -- Table: public.customer
 
--- DROP TABLE public.customer;
+-- DROP TABLE IF EXISTS public.customer;
 
 CREATE TABLE IF NOT EXISTS public.customer
 (
-    id bigint NOT NULL DEFAULT next_id(),
+    id bigint NOT NULL DEFAULT id_generator(),
     username character varying COLLATE pg_catalog."default" NOT NULL,
     password character varying COLLATE pg_catalog."default" NOT NULL,
     last_login timestamp with time zone,
@@ -18,13 +18,13 @@ CREATE TABLE IF NOT EXISTS public.customer
 
 TABLESPACE pg_default;
 
-ALTER TABLE public.customer
-    OWNER to postgres;
+ALTER TABLE IF EXISTS public.customer
+    OWNER to "cana-api";
 -- Index: index_username
 
--- DROP INDEX public.index_username;
+-- DROP INDEX IF EXISTS public.index_username;
 
-CREATE INDEX index_username
+CREATE INDEX IF NOT EXISTS index_username
     ON public.customer USING btree
     (username COLLATE pg_catalog."default" ASC NULLS LAST)
     TABLESPACE pg_default;

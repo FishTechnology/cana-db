@@ -1,10 +1,10 @@
 -- Table: public.testcase_result
 
--- DROP TABLE public.testcase_result;
+-- DROP TABLE IF EXISTS public.testcase_result;
 
 CREATE TABLE IF NOT EXISTS public.testcase_result
 (
-    id bigint NOT NULL DEFAULT nextval('testcase_result_id_seq'::regclass),
+    id bigint NOT NULL DEFAULT id_generator(),
     testplan_result_id bigint NOT NULL,
     testcaseid bigint NOT NULL,
     startedon timestamp with time zone,
@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS public.testcase_result
     createdon timestamp with time zone,
     modifiedon timestamp with time zone,
     execution_order bigint NOT NULL,
+    total_duration character varying COLLATE pg_catalog."default",
     CONSTRAINT testcase_result_pkey PRIMARY KEY (id),
     CONSTRAINT testcase_result_testcaseid_fkey FOREIGN KEY (testcaseid)
         REFERENCES public.testcase (id) MATCH SIMPLE
@@ -27,5 +28,5 @@ CREATE TABLE IF NOT EXISTS public.testcase_result
 
 TABLESPACE pg_default;
 
-ALTER TABLE public.testcase_result
-    OWNER to postgres;
+ALTER TABLE IF EXISTS public.testcase_result
+    OWNER to "cana-api";

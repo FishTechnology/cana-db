@@ -1,10 +1,10 @@
 -- Table: public.actionoption
 
--- DROP TABLE public.actionoption;
+-- DROP TABLE IF EXISTS public.actionoption;
 
 CREATE TABLE IF NOT EXISTS public.actionoption
 (
-    id bigint NOT NULL DEFAULT nextval('actoinoption_id_seq'::regclass),
+    id bigint NOT NULL DEFAULT id_generator(),
     actionid bigint NOT NULL,
     optiontype character varying COLLATE pg_catalog."default" NOT NULL,
     waitduration bigint,
@@ -19,5 +19,5 @@ CREATE TABLE IF NOT EXISTS public.actionoption
 
 TABLESPACE pg_default;
 
-ALTER TABLE public.actionoption
-    OWNER to postgres;
+ALTER TABLE IF EXISTS public.actionoption
+    OWNER to "cana-api";

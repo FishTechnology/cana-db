@@ -1,10 +1,10 @@
 -- Table: public.scheduleiteration
 
--- DROP TABLE public.scheduleiteration;
+-- DROP TABLE IF EXISTS public.scheduleiteration;
 
 CREATE TABLE IF NOT EXISTS public.scheduleiteration
 (
-    id bigint NOT NULL DEFAULT nextval('scheduleiteration_id_seq'::regclass),
+    id bigint NOT NULL DEFAULT id_generator(),
     scheduleid bigint NOT NULL,
     status character varying COLLATE pg_catalog."default" NOT NULL,
     comments character varying COLLATE pg_catalog."default",
@@ -18,10 +18,12 @@ CREATE TABLE IF NOT EXISTS public.scheduleiteration
     modifiedby character varying COLLATE pg_catalog."default",
     createdby character varying COLLATE pg_catalog."default",
     browsertype character varying COLLATE pg_catalog."default",
+    error_message character varying COLLATE pg_catalog."default",
+    total_duration character varying COLLATE pg_catalog."default",
     CONSTRAINT scheduleiteration_pkey PRIMARY KEY (id)
 )
 
 TABLESPACE pg_default;
 
-ALTER TABLE public.scheduleiteration
-    OWNER to postgres;
+ALTER TABLE IF EXISTS public.scheduleiteration
+    OWNER to "cana-api";

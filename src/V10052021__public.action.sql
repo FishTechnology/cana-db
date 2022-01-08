@@ -1,10 +1,10 @@
 -- Table: public.action
 
--- DROP TABLE public.action;
+-- DROP TABLE IF EXISTS public.action;
 
 CREATE TABLE IF NOT EXISTS public.action
 (
-    id bigint NOT NULL DEFAULT nextval('action_id_seq'::regclass),
+    id bigint NOT NULL DEFAULT id_generator(),
     key character varying COLLATE pg_catalog."default" NOT NULL,
     value character varying COLLATE pg_catalog."default",
     type character varying COLLATE pg_catalog."default" NOT NULL,
@@ -35,5 +35,5 @@ CREATE TABLE IF NOT EXISTS public.action
 
 TABLESPACE pg_default;
 
-ALTER TABLE public.action
-    OWNER to postgres;
+ALTER TABLE IF EXISTS public.action
+    OWNER to "cana-api";

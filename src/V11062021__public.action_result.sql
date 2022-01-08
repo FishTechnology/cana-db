@@ -1,10 +1,10 @@
 -- Table: public.action_result
 
--- DROP TABLE public.action_result;
+-- DROP TABLE IF EXISTS public.action_result;
 
 CREATE TABLE IF NOT EXISTS public.action_result
 (
-    id bigint NOT NULL DEFAULT nextval('action_result_id_seq'::regclass),
+    id bigint NOT NULL DEFAULT id_generator(),
     testcase_result_id bigint NOT NULL,
     actionid bigint NOT NULL,
     startedon timestamp with time zone,
@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS public.action_result
     createdon timestamp with time zone,
     modifiedon timestamp with time zone,
     execution_order bigint,
+    duration character varying COLLATE pg_catalog."default",
     CONSTRAINT action_result_pkey PRIMARY KEY (id),
     CONSTRAINT action_result_actionid_fkey FOREIGN KEY (actionid)
         REFERENCES public.action (id) MATCH SIMPLE
@@ -27,5 +28,5 @@ CREATE TABLE IF NOT EXISTS public.action_result
 
 TABLESPACE pg_default;
 
-ALTER TABLE public.action_result
-    OWNER to postgres;
+ALTER TABLE IF EXISTS public.action_result
+    OWNER to "cana-api";

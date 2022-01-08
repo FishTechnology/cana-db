@@ -1,6 +1,6 @@
 -- Table: public.environmentvariable
 
--- DROP TABLE public.environmentvariable;
+-- DROP TABLE IF EXISTS public.environmentvariable;
 
 CREATE TABLE IF NOT EXISTS public.environmentvariable
 (
@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS public.environmentvariable
     userid bigint NOT NULL,
     environmentid bigint,
     content character varying COLLATE pg_catalog."default",
-    id bigint NOT NULL DEFAULT nextval('environmentvariable_id_seq'::regclass),
+    id bigint NOT NULL DEFAULT id_generator(),
     CONSTRAINT environmentvariable_pkey PRIMARY KEY (id),
     CONSTRAINT environmentvariable_userid_fkey FOREIGN KEY (userid)
         REFERENCES public.customer (id) MATCH SIMPLE
@@ -26,21 +26,21 @@ CREATE TABLE IF NOT EXISTS public.environmentvariable
 
 TABLESPACE pg_default;
 
-ALTER TABLE public.environmentvariable
-    OWNER to postgres;
+ALTER TABLE IF EXISTS public.environmentvariable
+    OWNER to "cana-api";
 -- Index: fki_environmentvariable_environmentid_pkey
 
--- DROP INDEX public.fki_environmentvariable_environmentid_pkey;
+-- DROP INDEX IF EXISTS public.fki_environmentvariable_environmentid_pkey;
 
-CREATE INDEX fki_environmentvariable_environmentid_pkey
+CREATE INDEX IF NOT EXISTS fki_environmentvariable_environmentid_pkey
     ON public.environmentvariable USING btree
     (environmentid ASC NULLS LAST)
     TABLESPACE pg_default;
 -- Index: index_userid
 
--- DROP INDEX public.index_userid;
+-- DROP INDEX IF EXISTS public.index_userid;
 
-CREATE INDEX index_userid
+CREATE INDEX IF NOT EXISTS index_userid
     ON public.environmentvariable USING btree
     (userid ASC NULLS LAST)
     TABLESPACE pg_default;

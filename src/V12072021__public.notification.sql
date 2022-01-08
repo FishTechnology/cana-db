@@ -1,6 +1,6 @@
 -- Table: public.notification
 
--- DROP TABLE public.notification;
+-- DROP TABLE IF EXISTS public.notification;
 
 CREATE TABLE IF NOT EXISTS public.notification
 (
@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS public.notification
     isactive boolean NOT NULL,
     createdby character varying COLLATE pg_catalog."default",
     modifiedon timestamp with time zone,
-    id bigint NOT NULL DEFAULT nextval('notification_id_seq'::regclass),
+    id bigint NOT NULL DEFAULT id_generator(),
     modifiedby character varying COLLATE pg_catalog."default",
     CONSTRAINT notification_pkey PRIMARY KEY (id),
     CONSTRAINT notificaiton_schedule_iteration_id_fkey FOREIGN KEY (schedule_iteration_id)
@@ -21,5 +21,5 @@ CREATE TABLE IF NOT EXISTS public.notification
 
 TABLESPACE pg_default;
 
-ALTER TABLE public.notification
-    OWNER to postgres;
+ALTER TABLE IF EXISTS public.notification
+    OWNER to "cana-api";

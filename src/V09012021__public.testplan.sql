@@ -1,6 +1,6 @@
 -- Table: public.testplan
 
--- DROP TABLE public.testplan;
+-- DROP TABLE IF EXISTS public.testplan;
 
 CREATE TABLE IF NOT EXISTS public.testplan
 (
@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS public.testplan
     modifiedon timestamp with time zone,
     createdby character varying COLLATE pg_catalog."default",
     modifiedby character varying COLLATE pg_catalog."default",
-    id bigint NOT NULL DEFAULT nextval('testplan_id_seq'::regclass),
+    id bigint NOT NULL DEFAULT id_generator(),
     CONSTRAINT testplan_pkey PRIMARY KEY (id),
     CONSTRAINT testplan_userid_fkey FOREIGN KEY (userid)
         REFERENCES public.customer (id) MATCH SIMPLE
@@ -23,13 +23,13 @@ CREATE TABLE IF NOT EXISTS public.testplan
 
 TABLESPACE pg_default;
 
-ALTER TABLE public.testplan
-    OWNER to postgres;
+ALTER TABLE IF EXISTS public.testplan
+    OWNER to "cana-api";
 -- Index: fki_testplan_userid_fkey
 
--- DROP INDEX public.fki_testplan_userid_fkey;
+-- DROP INDEX IF EXISTS public.fki_testplan_userid_fkey;
 
-CREATE INDEX fki_testplan_userid_fkey
+CREATE INDEX IF NOT EXISTS fki_testplan_userid_fkey
     ON public.testplan USING btree
     (userid ASC NULLS LAST)
     TABLESPACE pg_default;
