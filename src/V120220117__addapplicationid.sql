@@ -17,3 +17,21 @@ ALTER TABLE IF EXISTS public.testplan
     ON UPDATE NO ACTION
     ON DELETE NO ACTION
     NOT VALID;
+
+ALTER TABLE IF EXISTS public.schedule DROP CONSTRAINT IF EXISTS schedule_environmentid_fkey;
+
+ALTER TABLE IF EXISTS public.schedule
+    ADD FOREIGN KEY (environmentid)
+    REFERENCES public.config (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+
+ALTER TABLE IF EXISTS public.schedule
+    ADD COLUMN applicationid bigint NOT NULL;
+ALTER TABLE IF EXISTS public.schedule
+    ADD FOREIGN KEY (applicationid)
+    REFERENCES public.application (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
