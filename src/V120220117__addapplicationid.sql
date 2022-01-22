@@ -35,3 +35,6 @@ ALTER TABLE IF EXISTS public.schedule
     ON UPDATE NO ACTION
     ON DELETE NO ACTION
     NOT VALID;
+
+ALTER TABLE IF EXISTS public.system DROP COLUMN IF EXISTS applicationid;
+ALTER TABLE IF EXISTS public.system DROP CONSTRAINT IF EXISTS system_applicationid_fkey;
