@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS public.action_option_result
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
         NOT VALID
-)
+);
 
 
 ALTER TABLE IF EXISTS public.action_option_result
