@@ -10,3 +10,4 @@ ALTER TABLE IF EXISTS public.actionoption
 ALTER TABLE IF EXISTS public.actionoption DROP COLUMN IF EXISTS waitduration;
 
 UPDATE public.actionoption SET optiontype= 'CONTROL' WHERE optiontype='WAIT_FOR';
+UPDATE public.actionoption SET optiontype= 'CONTENT' WHERE optiontype='TEXT';
